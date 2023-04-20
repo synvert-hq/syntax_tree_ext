@@ -35,7 +35,7 @@ module SyntaxTree
 
     def siblings
       index = parent.child_nodes.index(self)
-      parent.child_nodes[index + 1..]
+      parent.child_nodes[index + 1...]
     end
 
     def source

@@ -1,11 +1,25 @@
 # frozen_string_literal: true
 
+require 'spec_helper'
+
 RSpec.describe SyntaxTreeExt do
-  it "has a version number" do
-    expect(SyntaxTreeExt::VERSION).not_to be nil
+  let(:parser) {
+    SyntaxTree::Parser.new(<<~EOS)
+      class Synvert
+        def initialize; end
+        def foo; end
+        def bar; end
+      end
+    EOS
+  }
+  let(:node) { parser.parse }
+  let(:child_node) { node.statements.child_nodes.first.bodystmt.statements.child_nodes[1] }
+
+  it 'gets source' do
+    expect(child_node.source).to eq "def initialize; end\n"
   end
 
-  it "does something useful" do
-    expect(false).to eq(true)
+  it 'gets siblings' do
+    expect(child_node.siblings.size).to eq 2
   end
 end
