@@ -13,7 +13,7 @@ RSpec.describe SyntaxTreeExt do
     EOS
   }
   let(:node) { parser.parse }
-  let(:child_node) { node.statements.child_nodes.first.bodystmt.statements.child_nodes[1] }
+  let(:child_node) { node.statements.body.first.bodystmt.statements.body[1] }
 
   it 'gets source' do
     expect(child_node.source).to eq "def initialize; end\n"
