@@ -38,8 +38,30 @@ module SyntaxTree
       parent_node.child_nodes[index + 1...]
     end
 
-    def source
-      @source[location.start_char..location.end_char]
+    def to_value
+      case self
+      when SymbolLiteral
+        value.value.to_sym
+      when StringLiteral
+        parts.map(&:to_value).join
+      when FloatLiteral
+        value.to_f
+      when Int
+        value.to_i
+      when Kw
+        value == 'true'
+      when VarRef
+        value.to_value
+      when Label, TStringContent
+        value
+      else
+        self
+      end
+    end
+
+    def to_source
+      source[location.start_char...location.end_char]
+    end
     end
   end
 end
