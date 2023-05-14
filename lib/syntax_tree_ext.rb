@@ -15,27 +15,27 @@ module SyntaxTree
 
     def parse
       node = original_parse
-      node.set_parent_and_source(source)
+      node.set_parent_node_and_source(source)
       node
     end
   end
 
   class Node
-    attr_accessor :parent, :source
+    attr_accessor :parent_node, :source
 
-    def set_parent_and_source(source)
+    def set_parent_node_and_source(source)
       self.source = source
       child_nodes.each do |child_node|
         next unless child_node.is_a?(Node)
 
-        child_node.parent = self
-        child_node.set_parent_and_source(source)
+        child_node.parent_node = self
+        child_node.set_parent_node_and_source(source)
       end
     end
 
     def siblings
-      index = parent.child_nodes.index(self)
-      parent.child_nodes[index + 1...]
+      index = parent_node.child_nodes.index(self)
+      parent_node.child_nodes[index + 1...]
     end
 
     def source
