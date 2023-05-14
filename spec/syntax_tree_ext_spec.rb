@@ -60,4 +60,38 @@ RSpec.describe SyntaxTreeExt do
       expect(child_node.to_source).to eq "def initialize; end"
     end
   end
+
+  describe 'key value by method_missing' do
+    it 'gets for key value' do
+      node = parse('{:foo => :bar}')
+      expect(node.foo_value.to_source).to eq ':bar'
+
+      node = parse("{'foo' => 'bar'}")
+      expect(node.foo_value.to_source).to eq "'bar'"
+
+      expect(node.bar_value).to be_nil
+    end
+
+    it 'gets for key value' do
+      node = parse('{ foo: :bar }')
+      expect(node.foo_value.to_source).to eq ':bar'
+
+      node = parse("{ foo: 'bar' }")
+      expect(node.foo_value.to_source).to eq "'bar'"
+
+      expect(node.bar_value).to be_nil
+    end
+  end
+
+  describe 'key value source by method_missing' do
+    it 'gets for key value source' do
+      node = parse('{:foo => :bar}')
+      expect(node.foo_source).to eq ':bar'
+
+      node = parse("{'foo' => 'bar'}")
+      expect(node.foo_source).to eq "'bar'"
+
+      expect(node.bar_source).to eq ''
+    end
+  end
 end
