@@ -67,11 +67,13 @@ module SyntaxTree
     def method_missing(method_name, *args, &block)
       return super unless respond_to_assocs?
 
-      if method_name.to_s.end_with?('_value')
+      if method_name.to_s.end_with?('_assoc')
+        key = method_name.to_s[0..-7]
+        return assocs.find { |assoc| assoc_key_equal?(assoc, key) }
+      elsif method_name.to_s.end_with?('_value')
         key = method_name.to_s[0..-7]
         return assocs.find { |assoc| assoc_key_equal?(assoc, key) }&.value
-      end
-      if method_name.to_s.end_with?('_source')
+      elsif method_name.to_s.end_with?('_source')
         key = method_name.to_s[0..-8]
         return assocs.find { |assoc| assoc_key_equal?(assoc, key) }&.value&.to_source || ''
       end
@@ -82,11 +84,13 @@ module SyntaxTree
     def respond_to_missing?(method_name, *args)
       return super unless respond_to_assocs?
 
-      if method_name.to_s.end_with?('_value')
+      if method_name.to_s.end_with?('_assoc')
         key = method_name[0..-7]
         return !!assocs.find { |assoc| assoc_key_equal?(assoc, key) }
-      end
-      if method_name.to_s.end_with?('_source')
+      elsif method_name.to_s.end_with?('_value')
+        key = method_name[0..-7]
+        return !!assocs.find { |assoc| assoc_key_equal?(assoc, key) }
+      elsif method_name.to_s.end_with?('_source')
         key = method_name.to_s[0..-8]
         return !!assocs.find { |assoc| assoc_key_equal?(assoc, key) }
       end

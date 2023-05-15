@@ -61,20 +61,34 @@ RSpec.describe SyntaxTreeExt do
     end
   end
 
-  describe 'key value by method_missing' do
-    it 'gets for key value' do
+  describe 'hash assoc node by method_missing' do
+    it 'gets for assoc node' do
       node = parse('{:foo => :bar}')
+      expect(node.foo_assoc.to_source).to eq ':foo => :bar'
+
+      node = parse('{ foo: :bar }')
+      expect(node.foo_assoc.to_source).to eq 'foo: :bar'
+
+      node = parse("{'foo' => 'bar'}")
+      expect(node.foo_assoc.to_source).to eq "'foo' => 'bar'"
+
+      node = parse("{ foo: 'bar' }")
+      expect(node.foo_assoc.to_source).to eq "foo: 'bar'"
+
+      expect(node.bar_value).to be_nil
+    end
+  end
+
+  describe 'hash assoc value node by method_missing' do
+    it 'gets for value node' do
+      node = parse('{:foo => :bar}')
+      expect(node.foo_value.to_source).to eq ':bar'
+
+      node = parse('{ foo: :bar }')
       expect(node.foo_value.to_source).to eq ':bar'
 
       node = parse("{'foo' => 'bar'}")
       expect(node.foo_value.to_source).to eq "'bar'"
-
-      expect(node.bar_value).to be_nil
-    end
-
-    it 'gets for key value' do
-      node = parse('{ foo: :bar }')
-      expect(node.foo_value.to_source).to eq ':bar'
 
       node = parse("{ foo: 'bar' }")
       expect(node.foo_value.to_source).to eq "'bar'"
@@ -83,8 +97,8 @@ RSpec.describe SyntaxTreeExt do
     end
   end
 
-  describe 'key value source by method_missing' do
-    it 'gets for key value source' do
+  describe 'hash assoc value source by method_missing' do
+    it 'gets for value source' do
       node = parse('{:foo => :bar}')
       expect(node.foo_source).to eq ':bar'
 
