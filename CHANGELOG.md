@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.3.0 (2023-05-15)
+
+* Support `xxx_assoc` to get assoc node of the hash node
+
 ## 0.2.0 (2023-05-14)
 
 * Rename `Node#parent` to `Node#parent_node`
