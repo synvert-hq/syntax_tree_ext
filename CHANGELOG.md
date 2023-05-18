@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.3.1 (2023-05-18)
+
+* Support `array` in `Node#to_value`
+
 ## 0.3.0 (2023-05-15)
 
 * Support `xxx_assoc` to get assoc node of the hash node
