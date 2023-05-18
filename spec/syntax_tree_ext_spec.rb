@@ -7,13 +7,13 @@ RSpec.describe SyntaxTreeExt do
     SyntaxTree::Parser.new(code).parse.statements.body.first
   end
 
-  let(:source) {<<~EOS}
-      class Synvert
-        def initialize; end
-        def foo; end
-        def bar; end
-      end
-    EOS
+  let(:source) { <<~EOS }
+    class Synvert
+      def initialize; end
+      def foo; end
+      def bar; end
+    end
+  EOS
 
   let(:node) { SyntaxTree::Parser.new(source).parse }
   let(:child_node) { node.statements.body.first.bodystmt.statements.body[1] }
