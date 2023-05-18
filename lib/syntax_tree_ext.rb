@@ -52,8 +52,10 @@ module SyntaxTree
         value == 'true'
       when VarRef
         value.to_value
-      when Label, TStringContent
+      when Label, TStringContent, Ident
         value
+      when ArrayLiteral
+        contents.parts.map { |part| part.to_value }
       else
         self
       end

@@ -53,6 +53,11 @@ RSpec.describe SyntaxTreeExt do
       node = parse('false')
       expect(node.to_value).to eq false
     end
+
+    it 'gets for array' do
+      node = parse("['str', :str]")
+      expect(node.to_value).to eq ['str', :str]
+    end
   end
 
   describe '#to_source' do
