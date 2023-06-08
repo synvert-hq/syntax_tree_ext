@@ -7,13 +7,13 @@ RSpec.describe SyntaxTreeExt do
     SyntaxTree::Parser.new(code).parse.statements.body.first
   end
 
-  let(:source) {<<~EOS}
-      class Synvert
-        def initialize; end
-        def foo; end
-        def bar; end
-      end
-    EOS
+  let(:source) { <<~EOS }
+    class Synvert
+      def initialize; end
+      def foo; end
+      def bar; end
+    end
+  EOS
 
   let(:node) { SyntaxTree::Parser.new(source).parse }
   let(:child_node) { node.statements.body.first.bodystmt.statements.body[1] }
@@ -122,40 +122,84 @@ RSpec.describe SyntaxTreeExt do
       EOS
       expect(node.to_hash).to eq(
         {
-          :node_type=>"ClassDeclaration",
-          :constant=>{
-            :node_type=>"ConstRef",
-            :constant=>{
-              :node_type=>"Const",
-              :value=>"Synvert",
-              :location=>{:start_line=>1, :start_char=>6, :start_column=>6, :end_line=>1, :end_char=>13, :end_column=>13},
-              :comments=>[]
+          :node_type => "ClassDeclaration",
+          :constant => {
+            :node_type => "ConstRef",
+            :constant => {
+              :node_type => "Const",
+              :value => "Synvert",
+              :location => {
+                :start_line => 1,
+                :start_char => 6,
+                :start_column => 6,
+                :end_line => 1,
+                :end_char => 13,
+                :end_column => 13
+              },
+              :comments => []
             },
-            :location=>{:start_line=>1, :start_char=>6, :start_column=>6, :end_line=>1, :end_char=>13, :end_column=>13},
-            :comments=>[]
-          },
-          :superclass=>nil,
-          :bodystmt=>{
-            :node_type=>"BodyStmt",
-            :statements=>{
-              :node_type=>"Statements",
-              :body=>[{
-                :node_type=>"VoidStmt",
-                :location=>{:start_line=>1, :start_char=>13, :start_column=>13, :end_line=>1, :end_char=>13, :end_column=>0},
-                :comments=>[]
-              }],
-              :location=>{:start_line=>1, :start_char=>13, :start_column=>13, :end_line=>1, :end_char=>14, :end_column=>0},
-              :comments=>[]
+            :location => {
+              :start_line => 1,
+              :start_char => 6,
+              :start_column => 6,
+              :end_line => 1,
+              :end_char => 13,
+              :end_column => 13
             },
-            :rescue_clause=>nil,
-            :else_keyword=>nil,
-            :else_clause=>nil,
-            :ensure_clause=>nil,
-            :location=>{:start_line=>1, :start_char=>13, :start_column=>13, :end_line=>1, :end_char=>14, :end_column=>0},
-            :comments=>[]
+            :comments => []
           },
-          :location=>{:start_line=>1, :start_char=>0, :start_column=>0, :end_line=>2, :end_char=>17, :end_column=>3},
-          :comments=>[]
+          :superclass => nil,
+          :bodystmt => {
+            :node_type => "BodyStmt",
+            :statements => {
+              :node_type => "Statements",
+              :body => [
+                {
+                  :node_type => "VoidStmt",
+                  :location => {
+                    :start_line => 1,
+                    :start_char => 13,
+                    :start_column => 13,
+                    :end_line => 1,
+                    :end_char => 13,
+                    :end_column => 0
+                  },
+                  :comments => []
+                }
+              ],
+              :location => {
+                :start_line => 1,
+                :start_char => 13,
+                :start_column => 13,
+                :end_line => 1,
+                :end_char => 14,
+                :end_column => 0
+              },
+              :comments => []
+            },
+            :rescue_clause => nil,
+            :else_keyword => nil,
+            :else_clause => nil,
+            :ensure_clause => nil,
+            :location => {
+              :start_line => 1,
+              :start_char => 13,
+              :start_column => 13,
+              :end_line => 1,
+              :end_char => 14,
+              :end_column => 0
+            },
+            :comments => []
+          },
+          :location => {
+            :start_line => 1,
+            :start_char => 0,
+            :start_column => 0,
+            :end_line => 2,
+            :end_char => 17,
+            :end_column => 3
+          },
+          :comments => []
         }
       )
     end
