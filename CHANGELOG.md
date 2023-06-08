@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.4.0 (2023-06-08)
+
+* Add `Syntax::Node#to_hash`
+
 ## 0.3.1 (2023-05-18)
 
 * Support `array` in `Node#to_value`
