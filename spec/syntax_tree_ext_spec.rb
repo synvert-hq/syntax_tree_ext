@@ -27,6 +27,11 @@ RSpec.describe SyntaxTreeExt do
   end
 
   describe '#to_value' do
+    it 'gets for const' do
+      node = parse('FooBar')
+      expect(node.to_value).to eq 'FooBar'
+    end
+
     it 'gets for symbol' do
       node = parse(':foo')
       expect(node.to_value).to eq :foo
@@ -37,7 +42,7 @@ RSpec.describe SyntaxTreeExt do
       expect(node.to_value).to eq 'foo'
     end
 
-    it 'gets for floast' do
+    it 'gets for float' do
       node = parse('1.1')
       expect(node.to_value).to eq 1.1
     end
