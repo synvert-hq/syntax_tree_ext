@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.4.1 (2023-06-11)
+
+* Support `const` for `to_value`
+
 ## 0.4.0 (2023-06-08)
 
 * Add `Syntax::Node#to_hash`
