@@ -38,6 +38,22 @@ module SyntaxTree
       parent_node.child_nodes[index + 1...]
     end
 
+    def keys
+      if is_a?(BareAssocHash) || is_a?(HashLiteral)
+        assocs.map(&:key)
+      else
+        raise MethodNotSupported, "keys is not supported for #{self}"
+      end
+    end
+
+    def values
+      if is_a?(BareAssocHash) || is_a?(HashLiteral)
+        assocs.map(&:value)
+      else
+        raise MethodNotSupported, "values is not supported for #{self}"
+      end
+    end
+
     def to_value
       case self
       when SymbolLiteral
