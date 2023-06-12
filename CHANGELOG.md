@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.5.0 (2023-06-12)
+
+* Add `keys` and `values` for hash
+
 ## 0.4.1 (2023-06-11)
 
 * Support `const` for `to_value`
