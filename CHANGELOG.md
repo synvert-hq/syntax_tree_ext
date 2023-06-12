@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.6.0 (2024-06-12)
+
+* Add `hash_assoc` and `hash_value` for hash
+
 ## 0.5.0 (2023-06-12)
 
 * Add `keys` and `values` for hash
