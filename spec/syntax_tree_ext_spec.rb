@@ -85,6 +85,30 @@ RSpec.describe SyntaxTreeExt do
     end
   end
 
+  describe '#hash_assoc' do
+    it 'gets assoc of specified key' do
+      node = parse('{:foo => :bar}')
+      expect(node.hash_assoc(:foo)).to eq node.assocs[0]
+    end
+
+    it 'gets nil if key does not exist' do
+      node = parse('{:foo => :bar}')
+      expect(node.hash_assoc(:bar)).to be_nil
+    end
+  end
+
+  describe '#hash_value' do
+    it 'gets value of specified key' do
+      node = parse('{:foo => :bar}')
+      expect(node.hash_value(:foo).to_value).to eq :bar
+    end
+
+    it 'gets nil if key does not exist' do
+      node = parse('{:foo => :bar}')
+      expect(node.hash_value(:bar)).to be_nil
+    end
+  end
+
   describe 'hash assoc node by method_missing' do
     it 'gets for assoc node' do
       node = parse('{:foo => :bar}')

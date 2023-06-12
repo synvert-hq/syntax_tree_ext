@@ -54,6 +54,22 @@ module SyntaxTree
       end
     end
 
+    def hash_assoc(key)
+      if is_a?(BareAssocHash) || is_a?(HashLiteral)
+        assocs.find { |assoc_node| assoc_node.key.to_value == key }
+      else
+        raise MethodNotSupported, "hash_assoc is not supported for #{self}"
+      end
+    end
+
+    def hash_value(key)
+      if is_a?(BareAssocHash) || is_a?(HashLiteral)
+        assocs.find { |assoc_node| assoc_node.key.to_value == key }&.value
+      else
+        raise MethodNotSupported, "hash_value is not supported for #{self}"
+      end
+    end
+
     def to_value
       case self
       when SymbolLiteral
