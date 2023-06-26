@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.6.1 (2024-06-26)
+
+* Use `deconstruct_key`.`values` instead of `child_nodes`
+
 ## 0.6.0 (2024-06-12)
 
 * Add `hash_assoc` and `hash_value` for hash
