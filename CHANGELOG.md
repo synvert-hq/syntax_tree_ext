@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.6.2 (2024-06-26)
+
+* Do not flatten `deconstruct_keys`.`values`
+
 ## 0.6.1 (2024-06-26)
 
 * Use `deconstruct_key`.`values` instead of `child_nodes`
