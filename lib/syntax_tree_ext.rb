@@ -25,7 +25,7 @@ module SyntaxTree
 
     def set_parent_node_and_source(source)
       self.source = source
-      child_nodes.each do |child_node|
+      self.deconstruct_keys([]).except(:location, :comments).values.flatten.each do |child_node|
         next unless child_node.is_a?(Node)
 
         child_node.parent_node = self
@@ -34,8 +34,9 @@ module SyntaxTree
     end
 
     def siblings
-      index = parent_node.child_nodes.index(self)
-      parent_node.child_nodes[index + 1...]
+      child_nodes = parent_node.deconstruct_keys([]).except(:location, :comments).values.flatten
+      index = child_nodes.index(self)
+      child_nodes[index + 1...]
     end
 
     def keys
