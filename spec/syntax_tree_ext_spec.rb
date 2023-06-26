@@ -15,14 +15,14 @@ RSpec.describe SyntaxTreeExt do
     end
   EOS
 
-  let(:node) { SyntaxTree::Parser.new(source).parse }
-  let(:child_node) { node.statements.body.first.bodystmt.statements.body[1] }
+  let(:node) { SyntaxTree::Parser.new(source).parse.statements.body.first }
 
   it 'gets source' do
-    expect(child_node.source).to eq source
+    expect(node.source).to eq source
   end
 
   it 'gets siblings' do
+    child_node = node.bodystmt.statements.body[1]
     expect(child_node.siblings.size).to eq 2
   end
 
@@ -67,6 +67,7 @@ RSpec.describe SyntaxTreeExt do
 
   describe '#to_source' do
     it 'gets source' do
+      child_node = node.bodystmt.statements.body[1]
       expect(child_node.to_source).to eq "def initialize; end"
     end
   end
