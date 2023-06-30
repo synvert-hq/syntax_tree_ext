@@ -4,6 +4,14 @@ require_relative "syntax_tree_ext/version"
 
 require 'syntax_tree'
 
+if RUBY_VERSION.to_i < 3
+  class Hash
+    def except(*keys)
+      self.reject { |k, _| keys.include?(k) }
+    end
+  end
+end
+
 module SyntaxTreeExt
   class Error < StandardError; end
   # Your code goes here...
