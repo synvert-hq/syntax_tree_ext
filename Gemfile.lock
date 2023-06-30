@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    syntax_tree_ext (0.6.2)
+    syntax_tree_ext (0.6.3)
       syntax_tree
 
 GEM
