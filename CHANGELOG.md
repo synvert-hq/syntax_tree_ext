@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.6.4 (2023-08-17)
+
+* `to_value` supports for empty array
+
 ## 0.6.3 (2023-07-01)
 
 * Support `Hash#except` for ruby 2
