@@ -63,6 +63,11 @@ RSpec.describe SyntaxTreeExt do
       node = parse("['str', :str]")
       expect(node.to_value).to eq ['str', :str]
     end
+
+    it 'gets for empty array' do
+      node = parse('[]')
+      expect(node.to_value).to eq []
+    end
   end
 
   describe '#to_source' do

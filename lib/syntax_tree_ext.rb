@@ -110,7 +110,7 @@ module SyntaxTree
       when Const, Label, TStringContent, Ident
         value
       when ArrayLiteral
-        contents.parts.map { |part| part.to_value }
+        contents ? contents.parts.map { |part| part.to_value } : []
       else
         self
       end
