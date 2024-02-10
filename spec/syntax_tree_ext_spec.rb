@@ -4,7 +4,7 @@ require 'spec_helper'
 
 RSpec.describe SyntaxTreeExt do
   def parse(code)
-    SyntaxTree::Parser.new(code).parse.statements.body.first
+    SyntaxTree.parse(code).statements.body.first
   end
 
   let(:source) { <<~EOS }
@@ -15,7 +15,7 @@ RSpec.describe SyntaxTreeExt do
     end
   EOS
 
-  let(:node) { SyntaxTree::Parser.new(source).parse.statements.body.first }
+  let(:node) { SyntaxTree.parse(source).statements.body.first }
 
   it 'gets source' do
     expect(node.source).to eq source

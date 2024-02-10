@@ -18,11 +18,11 @@ module SyntaxTreeExt
 end
 
 module SyntaxTree
-  class Parser
+  class << self
     alias_method :original_parse, :parse
 
-    def parse
-      node = original_parse
+    def parse(source)
+      node = original_parse(source)
       node.set_parent_node_and_source(source)
       node
     end
