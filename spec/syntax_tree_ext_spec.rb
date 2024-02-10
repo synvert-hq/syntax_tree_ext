@@ -21,11 +21,6 @@ RSpec.describe SyntaxTreeExt do
     expect(node.source).to eq source
   end
 
-  it 'gets siblings' do
-    child_node = node.bodystmt.statements.body[1]
-    expect(child_node.siblings.size).to eq 2
-  end
-
   describe '#to_value' do
     it 'gets for const' do
       node = parse('FooBar')

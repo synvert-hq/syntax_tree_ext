@@ -50,17 +50,6 @@ module SyntaxTree
       end
     end
 
-    def siblings
-      child_nodes = parent_node.deconstruct_keys([]).except(:location, :comments).values
-      if child_nodes.is_a?(Array) && child_nodes.size == 1 && child_nodes.first.is_a?(Array)
-        index = child_nodes.first.index(self)
-        return child_nodes.first[index + 1...]
-      end
-
-      index = child_nodes.index(self)
-      child_nodes[index + 1...]
-    end
-
     def keys
       if is_a?(BareAssocHash) || is_a?(HashLiteral)
         assocs.map(&:key)
