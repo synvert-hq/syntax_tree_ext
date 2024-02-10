@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.7.0 (2024-02-10)
+
+* Remove `to_hash` extend
+* Remove `siblings` method
+* Hack `SyntaxTree.parse` instead of `SyntaxTree::Parser.parse`
+
 ## 0.6.4 (2023-08-17)
 
 * `to_value` supports for empty array
