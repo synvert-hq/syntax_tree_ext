@@ -120,27 +120,6 @@ module SyntaxTree
       source[location.start_char...location.end_char]
     end
 
-    # Convert node to a hash, so that it can be converted to a json.
-    def to_hash
-      result = { node_type: self.class.name.split('::').last }
-      unless deconstruct_keys([]).empty?
-        deconstruct_keys([]).each do |key, value|
-          result[key] =
-            case value
-            when Array
-              value.map { |v| v.respond_to?(:to_hash) ? v.to_hash : v }
-            when SyntaxTree::Node, SyntaxTree::Location
-              value.to_hash
-            else
-              value
-            end
-        end
-      else
-        result[:children] = children.map { |c| c.respond_to?(:to_hash) ? c.to_hash : c }
-      end
-      result
-    end
-
     # Respond key value and source for hash node
     def method_missing(method_name, *args, &block)
       return super unless respond_to_assocs?
@@ -185,19 +164,6 @@ module SyntaxTree
     def assoc_key_equal?(assoc, key)
       assoc_key = assoc.key.to_value.to_s
       assoc_key.end_with?(':') ? assoc_key == "#{key}:" : assoc_key == key
-    end
-  end
-
-  class Location
-    def to_hash
-      {
-        start_line: start_line,
-        start_char: start_char,
-        start_column: start_column,
-        end_line: end_line,
-        end_char: end_char,
-        end_column: end_column,
-      }
     end
   end
 end
