@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.7.1 (2024-02-11)
+
+* Reuse `respond_to_assocs`
+
 ## 0.7.0 (2024-02-10)
 
 * Remove `to_hash` extend
