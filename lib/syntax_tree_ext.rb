@@ -51,7 +51,7 @@ module SyntaxTree
     end
 
     def keys
-      if is_a?(BareAssocHash) || is_a?(HashLiteral)
+      if respond_to_assocs?
         assocs.map(&:key)
       else
         raise MethodNotSupported, "keys is not supported for #{self}"
@@ -59,7 +59,7 @@ module SyntaxTree
     end
 
     def values
-      if is_a?(BareAssocHash) || is_a?(HashLiteral)
+      if respond_to_assocs?
         assocs.map(&:value)
       else
         raise MethodNotSupported, "values is not supported for #{self}"
@@ -67,7 +67,7 @@ module SyntaxTree
     end
 
     def hash_assoc(key)
-      if is_a?(BareAssocHash) || is_a?(HashLiteral)
+      if respond_to_assocs?
         assocs.find { |assoc_node| assoc_node.key.to_value == key }
       else
         raise MethodNotSupported, "hash_assoc is not supported for #{self}"
@@ -75,7 +75,7 @@ module SyntaxTree
     end
 
     def hash_value(key)
-      if is_a?(BareAssocHash) || is_a?(HashLiteral)
+      if respond_to_assocs?
         assocs.find { |assoc_node| assoc_node.key.to_value == key }&.value
       else
         raise MethodNotSupported, "hash_value is not supported for #{self}"
