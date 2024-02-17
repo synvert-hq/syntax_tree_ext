@@ -4,14 +4,6 @@ require_relative "syntax_tree_ext/version"
 
 require 'syntax_tree'
 
-if RUBY_VERSION.to_i < 3
-  class Hash
-    def except(*keys)
-      self.reject { |k, _| keys.include?(k) }
-    end
-  end
-end
-
 module SyntaxTreeExt
   class Error < StandardError; end
   # Your code goes here...
@@ -33,7 +25,7 @@ module SyntaxTree
 
     def set_parent_node_and_source(source)
       self.source = source
-      self.deconstruct_keys([]).except(:location, :comments).values.each do |child_node|
+      self.deconstruct_keys([]).filter { |key, _value| ![:location, :comments].include?(key) }.values.each do |child_node|
         if child_node.is_a?(Array)
           child_node.each do |child_child_node|
             next unless child_child_node.is_a?(Node)
