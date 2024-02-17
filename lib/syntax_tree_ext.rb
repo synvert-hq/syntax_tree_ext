@@ -25,7 +25,10 @@ module SyntaxTree
 
     def set_parent_node_and_source(source)
       self.source = source
-      self.deconstruct_keys([]).filter { |key, _value| ![:location, :comments].include?(key) }.values.each do |child_node|
+      self.deconstruct_keys([]).filter { |key, _value|
+        ![:location, :comments].include?(key)
+      }
+.values.each do |child_node|
         if child_node.is_a?(Array)
           child_node.each do |child_child_node|
             next unless child_child_node.is_a?(Node)
@@ -68,7 +71,8 @@ module SyntaxTree
 
     def hash_value(key)
       if respond_to_assocs?
-        assocs.find { |assoc_node| assoc_node.key.to_value == key }&.value
+        assocs.find { |assoc_node| assoc_node.key.to_value == key }
+&.value
       else
         raise MethodNotSupported, "hash_value is not supported for #{self}"
       end
@@ -110,10 +114,12 @@ module SyntaxTree
         return assocs.find { |assoc| assoc_key_equal?(assoc, key) }
       elsif method_name.to_s.end_with?('_value')
         key = method_name.to_s[0..-7]
-        return assocs.find { |assoc| assoc_key_equal?(assoc, key) }&.value
+        return assocs.find { |assoc| assoc_key_equal?(assoc, key) }
+&.value
       elsif method_name.to_s.end_with?('_source')
         key = method_name.to_s[0..-8]
-        return assocs.find { |assoc| assoc_key_equal?(assoc, key) }&.value&.to_source || ''
+        return assocs.find { |assoc| assoc_key_equal?(assoc, key) }
+&.value&.to_source || ''
       end
 
       super
