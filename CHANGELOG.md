@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.7.2 (2024-02-17)
+
+* Use `Hash#filter` instead of `Hash#reject`
+
 ## 0.7.1 (2024-02-11)
 
 * Reuse `respond_to_assocs`
