@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.8.0 (2024-04-07)
+
+* Abstract `syntax_tree_ext/parent_node_ext`
+* Abstract `syntax_tree_ext/source_ext`
+* Inject hash helper methods only to `HashLiteral` and `BareAssocHash`
+
 ## 0.7.2 (2024-02-17)
 
 * Use `Hash#filter` instead of `Hash#reject`
