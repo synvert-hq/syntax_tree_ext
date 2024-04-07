@@ -3,7 +3,7 @@
 [![Build Status](https://github.com/synvert-hq/syntax_tree_ext/actions/workflows/main.yml/badge.svg)](https://github.com/synvert-hq/syntax_tree_ext/actions/workflows/main.yml)
 [![Gem Version](https://img.shields.io/gem/v/syntax_tree_ext.svg)](https://rubygems.org/gems/syntax_tree_ext)
 
-It adds some helpers syntax_tree node.
+It adds some helpers to syntax_tree node.
 
 ## Installation
 
