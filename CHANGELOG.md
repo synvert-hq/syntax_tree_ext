@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.8.1 (2024-04-07)
+
+* Extend `parse` with different method names
+
 ## 0.8.0 (2024-04-07)
 
 * Abstract `syntax_tree_ext/parent_node_ext`
