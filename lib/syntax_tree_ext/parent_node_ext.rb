@@ -2,10 +2,10 @@
 
 module SyntaxTree
   class << self
-    alias_method :original_parse, :parse
+    alias_method :original_parse_parent, :parse
 
     def parse(source)
-      node = original_parse(source)
+      node = original_parse_parent(source)
       node.set_parent_node(source)
       node
     end
@@ -14,7 +14,7 @@ module SyntaxTree
   class Node
     attr_accessor :parent_node
 
-    def set_parent_node_and_source(source)
+    def set_parent_node(source)
       self.deconstruct_keys([]).filter { |key, _value| ![:location, :comments].include?(key) }.values.each do |child_node|
         if child_node.is_a?(Array)
           child_node.each do |child_child_node|

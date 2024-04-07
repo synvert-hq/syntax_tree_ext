@@ -2,10 +2,10 @@
 
 module SyntaxTree
   class << self
-    alias_method :original_parse, :parse
+    alias_method :original_parse_source, :parse
 
     def parse(source)
-      node = original_parse(source)
+      node = original_parse_source(source)
       node.set_source(source)
       node
     end
