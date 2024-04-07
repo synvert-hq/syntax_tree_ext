@@ -3,16 +3,7 @@
 [![Build Status](https://github.com/synvert-hq/syntax_tree_ext/actions/workflows/main.yml/badge.svg)](https://github.com/synvert-hq/syntax_tree_ext/actions/workflows/main.yml)
 [![Gem Version](https://img.shields.io/gem/v/syntax_tree_ext.svg)](https://rubygems.org/gems/syntax_tree_ext)
 
-It adds `parent_node` and `source` methods to the `ParserTree::Node`.
-
-It also adds some helpers
-
-```ruby
-# node is a HashLiteral node
-node.foo_assoc # get the assoc node of hash foo key
-node.foo_value # get the value node of the hash foo key
-node.foo_source # get the source of the value node of the hash foo key
-```
+It adds some helpers syntax_tree node.
 
 ## Installation
 
@@ -29,6 +20,17 @@ If bundler is not being used to manage dependencies, install the gem by executin
 ```ruby
 require 'syntax_tree'
 require 'syntax_tree_ext'
+
+# node is a HashLiteral or BareAssocHash node
+node.foo_assoc # get the assoc node of hash foo key
+node.foo_value # get the value node of the hash foo key
+node.foo_source # get the source of the value node of the hash foo key
+node.keys # get key nodes of the hash node
+node.values # get value nodes of the hash node
+
+# all nodes
+node.to_value # get the value of the node, like `true`, `false`, `nil`, `1`, `"foo"`
+node.to_source # get the source code of the node
 ```
 
 ## Development
