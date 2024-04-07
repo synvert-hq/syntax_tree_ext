@@ -1,5 +1,8 @@
 # SyntaxTreeExt
 
+[![Build Status](https://github.com/synvert-hq/syntax_tree_ext/actions/workflows/main.yml/badge.svg)](https://github.com/synvert-hq/syntax_tree_ext/actions/workflows/main.yml)
+[![Gem Version](https://img.shields.io/gem/v/syntax_tree_ext.svg)](https://rubygems.org/gems/syntax_tree_ext)
+
 It adds `parent_node` and `source` methods to the `ParserTree::Node`.
 
 It also adds some helpers
