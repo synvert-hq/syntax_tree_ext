@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.8.2 (2024-04-18)
+
+* Remove `hash_assoc` and `hash_value` methods
+
 ## 0.8.1 (2024-04-07)
 
 * Extend `parse` with different method names
