@@ -20,14 +20,6 @@ module SyntaxTree
       assocs.map(&:value)
     end
 
-    def hash_assoc(key)
-      assocs.find { |assoc_node| assoc_node.key.to_value == key }
-    end
-
-    def hash_value(key)
-      assocs.find { |assoc_node| assoc_node.key.to_value == key }&.value
-    end
-
     # Respond key value and source for hash node
     def method_missing(method_name, *args, &block)
       if method_name.to_s.end_with?('_assoc')
