@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.9.0 (2024-07-16)
+
+* require `syntax_tree_ext/parent_node_ext` back
+
 ## 0.8.2 (2024-04-18)
 
 * Remove `hash_assoc` and `hash_value` methods
