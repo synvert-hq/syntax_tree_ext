@@ -4,6 +4,7 @@ require_relative "syntax_tree_ext/version"
 
 require 'syntax_tree'
 require_relative "syntax_tree_ext/source_ext"
+require_relative "syntax_tree_ext/parent_node_ext"
 
 module SyntaxTreeExt
   class Error < StandardError; end
