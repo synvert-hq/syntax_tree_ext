@@ -12,6 +12,16 @@ module SyntaxTreeExt
 end
 
 module SyntaxTree
+  module FullnameExt
+    def fullname
+      if parent_node&.parent_node&.parent_node&.respond_to?(:fullname)
+        "#{parent_node.parent_node.parent_node.fullname}::#{constant.to_source}"
+      else
+        constant.to_source
+      end
+    end
+  end
+
   module HashNodeExt
     def keys
       assocs.map(&:key)
@@ -66,6 +76,14 @@ module SyntaxTree
 
   class BareAssocHash
     include HashNodeExt
+  end
+
+  class ClassDeclaration
+    include FullnameExt
+  end
+
+  class ModuleDeclaration
+    include FullnameExt
   end
 
   class Node
