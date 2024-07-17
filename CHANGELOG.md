@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.9.2 (2024-07-17)
+
+* Rename `fullname` to `full_name`
+
 ## 0.9.1 (2024-07-17)
 
 * Add `fullname` to `ModuleDeclaration` and `ClassDeclaration`
