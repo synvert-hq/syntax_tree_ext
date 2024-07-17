@@ -134,16 +134,16 @@ RSpec.describe SyntaxTreeExt do
     end
   end
 
-  describe '#fullname' do
-    it 'gets fullname of module' do
+  describe '#full_name' do
+    it 'gets full_name of module' do
       node = parse('module Foo; module Bar; end; end')
-      expect(node.fullname).to eq 'Foo'
-      expect(node.bodystmt.statements.body[1].fullname).to eq 'Foo::Bar'
+      expect(node.full_name).to eq 'Foo'
+      expect(node.bodystmt.statements.body[1].full_name).to eq 'Foo::Bar'
     end
 
-    it 'gets fullname of class' do
+    it 'gets full_name of class' do
       node = parse('module Foo; module Bar; class Synvert; end; end; end')
-      expect(node.bodystmt.statements.body[1].bodystmt.statements.body[1].fullname).to eq 'Foo::Bar::Synvert'
+      expect(node.bodystmt.statements.body[1].bodystmt.statements.body[1].full_name).to eq 'Foo::Bar::Synvert'
     end
   end
 end

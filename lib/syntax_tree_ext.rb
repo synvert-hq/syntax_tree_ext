@@ -12,10 +12,10 @@ module SyntaxTreeExt
 end
 
 module SyntaxTree
-  module FullnameExt
-    def fullname
-      if parent_node&.parent_node&.parent_node&.respond_to?(:fullname)
-        "#{parent_node.parent_node.parent_node.fullname}::#{constant.to_source}"
+  module FullNameExt
+    def full_name
+      if parent_node&.parent_node&.parent_node&.respond_to?(:full_name)
+        "#{parent_node.parent_node.parent_node.full_name}::#{constant.to_source}"
       else
         constant.to_source
       end
@@ -79,11 +79,11 @@ module SyntaxTree
   end
 
   class ClassDeclaration
-    include FullnameExt
+    include FullNameExt
   end
 
   class ModuleDeclaration
-    include FullnameExt
+    include FullNameExt
   end
 
   class Node
